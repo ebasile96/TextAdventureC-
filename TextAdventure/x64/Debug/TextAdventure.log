@@ -1,0 +1,3 @@
+﻿  TextAdventure.cpp
+C:\Users\E.Basile\source\repos\TextAdventure\TextAdventure\Program.h(83,23): warning C4267: 'return': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+  TextAdventure.vcxproj -> C:\Users\E.Basile\source\repos\TextAdventure\x64\Debug\TextAdventure.exe
