@@ -80,7 +80,7 @@ int Program::CreateRoom(string name, string description)
 	room->Setup(name, description);
 	m_rooms.push_back(room);
 
-	return m_rooms.size();
+	return (m_rooms.size()-1);
 };
 
 
