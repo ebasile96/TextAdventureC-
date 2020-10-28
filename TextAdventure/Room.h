@@ -5,6 +5,8 @@
 #include <string>
 using namespace std;
 
+enum Direction {NORTH = 0, SOUTH = 1, EAST = 2, WEST = 3};
+
 struct Room
 {
 	Room();
@@ -14,6 +16,7 @@ struct Room
 
 	void OutputRoomInfo();
 	void OutputNeighbors();
+	bool CanGo(Direction direction);
 
 	string Name;
 	string Description;
@@ -53,9 +56,9 @@ void Room::OutputNeighbors()
 	cout << "You can go: ";
 
 	if (ptrNeighborNorth != nullptr) { cout << "(N)North"; }
-	else if (ptrNeighborSouth != nullptr) { cout << "(S)South"; }
-	else if (ptrNeighborEast != nullptr) { cout << "(E)East"; }
-	else if (ptrNeighborWest != nullptr) { cout << "(W)West"; }
+	if (ptrNeighborSouth != nullptr) { cout << "(S)South"; }
+	if (ptrNeighborEast != nullptr) { cout << "(E)East"; }
+	if (ptrNeighborWest != nullptr) { cout << "(W)West"; }
 
 	cout << endl;
 };
@@ -67,6 +70,27 @@ void Room::OutputRoomInfo()
 	cout << endl;
 }
 
+bool Room::CanGo(Direction direction) 
+{
+	if (direction == NORTH && ptrNeighborNorth != nullptr) 
+	{
+		return true;
+	}
+	else if (direction == SOUTH && ptrNeighborSouth != nullptr)
+	{
+		return true;
+	}
+	else if (direction == EAST && ptrNeighborEast != nullptr)
+	{
+		return true;
+	}
+	else if (direction == WEST && ptrNeighborWest != nullptr)
+	{
+		return true;
+	}
+
+	return false;
+}
 
 #endif // !ROOM_H
 

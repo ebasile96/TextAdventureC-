@@ -16,6 +16,7 @@ class Program
 
 	private:
 		void SetupRooms();
+		string HandleUserInput();
 		int CreateRoom(string name, string description);
 		Room* m_ptrCurrentRoom;
 		vector<Room*> m_rooms;
@@ -32,14 +33,17 @@ Program::Program()
 
 void Program::Run() 
 {
-	string userInput;
+
+	string currentStatus = "";
 	while (!n_done)
 	{
 		m_ptrCurrentRoom->OutputRoomInfo();
 
-		cout << "Now what?" << endl;
-		cout << ">" << endl;
-		getline(cin, userInput);
+		currentStatus = HandleUserInput();
+		
+
+		cout << "\t" << currentStatus << endl;
+		cout << endl << "Press Enter to Continue..." << endl;
 	} 
 
 }
@@ -76,12 +80,77 @@ void Program::SetupRooms()
 
 int Program::CreateRoom(string name, string description) 
 {
+	int index = m_rooms.size();
 	Room* room = new Room;
 	room->Setup(name, description);
 	m_rooms.push_back(room);
 
-	return (m_rooms.size()-1);
+	return (index);
 };
+
+string Program::HandleUserInput() 
+{
+	string currentStatus = "";
+	string userInput;
+	cout << "Now what?" << endl;
+	cout << ">" << endl;
+	getline(cin, userInput);
+
+	if (userInput == "N")
+	{
+		if (m_ptrCurrentRoom->CanGo(NORTH))
+		{
+			currentStatus = "You went North";
+			m_ptrCurrentRoom = m_ptrCurrentRoom->ptrNeighborNorth;
+		}
+		else
+		{
+			currentStatus = "You can't go North!";
+		}
+	}
+	else if (userInput == "S")
+	{
+		if (m_ptrCurrentRoom->CanGo(SOUTH))
+		{
+			currentStatus = "You went South";
+			m_ptrCurrentRoom = m_ptrCurrentRoom->ptrNeighborSouth;
+		}
+		else
+		{
+			currentStatus = "You can't go South!";
+		}
+	}
+	else if (userInput == "E")
+	{
+		if (m_ptrCurrentRoom->CanGo(EAST))
+		{
+			currentStatus = "You went East";
+			m_ptrCurrentRoom = m_ptrCurrentRoom->ptrNeighborEast;
+		}
+		else
+		{
+			currentStatus = "You can't go East!";
+		}
+	}
+	else if (userInput == "W")
+	{
+		if (m_ptrCurrentRoom->CanGo(WEST))
+		{
+			currentStatus = "You went West";
+			m_ptrCurrentRoom = m_ptrCurrentRoom->ptrNeighborWest;
+		}
+		else
+		{
+			currentStatus = "You can't go West!";
+		}
+	}
+
+	else {
+		currentStatus = "Unknown command...";
+	}
+
+	return currentStatus;
+}
 
 
 #endif // !PROGRAM_H
