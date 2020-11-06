@@ -17,11 +17,11 @@ class Program
 	private:
 		void SetupRooms();
 		string HandleUserInput();
-		int CreateRoom(string name, string description);
+		int CreateRoom(string name, string description, string item);
 		Room* m_ptrCurrentRoom;
 		vector<Room*> m_rooms;
 		bool n_done;
-
+		vector<string> Bag{"Knife"};
 };
 
 Program::Program() 
@@ -37,7 +37,7 @@ void Program::Run()
 	string currentStatus = "";
 	while (!n_done)
 	{
-		m_ptrCurrentRoom->OutputRoomInfo();
+		m_ptrCurrentRoom->OutputRoomName();
 		currentStatus = HandleUserInput();
 		
 
@@ -50,15 +50,15 @@ void Program::Run()
 void Program::SetupRooms() 
 {
 	//create room with name and description
-	int startingRoom = CreateRoom("Bedroom", "This is your bedroom");
-	int room1 = CreateRoom("Hallway", "1st floor - Hallway");
-	int room2 = CreateRoom("Jenny's bedroom", "This is your sister's bedroom, you shouldn't be here...");
-	int room3 = CreateRoom("Entrance hall", "This is the entrance hall, the door is locked.");
-	int gunRoom = CreateRoom("Kitchen", "You are in the kitchen, there is a bottle of wine.");
-	int monsterRoom = CreateRoom("Livingroom", "Your parents are watching TV on the couch, be careful!");
-	int keyRoom = CreateRoom("Shelf", "The car's keys must be here somewhere...");
-	int room7 = CreateRoom("Garage's stairs", "You are walking down the stairs...");
-	int exitRoom = CreateRoom("Garage", "You can now escape and reach your friends at the party!");
+	int startingRoom = CreateRoom("Bedroom", "This is your bedroom", "Nothing usefull here");
+	int room1 = CreateRoom("Hallway", "1st floor - Hallway", "Nothing usefull here");
+	int room2 = CreateRoom("Jenny's bedroom", "This is your sister's bedroom, you shouldn't be here...", "Nothing usefull here");
+	int room3 = CreateRoom("Entrance hall", "This is the entrance hall, the door is locked.", "Nothing usefull here");
+	int gunRoom = CreateRoom("Kitchen", "You are in the kitchen, there is a bottle of wine.", "Bottle of wine");
+	int monsterRoom = CreateRoom("Livingroom", "Your parents are watching TV on the couch, be careful!", "Nothing usefull here");
+	int keyRoom = CreateRoom("Shelf", "The car's keys must be here somewhere...", "key");
+	int room7 = CreateRoom("Garage's stairs", "You are walking down the stairs...", "Nothing usefull here");
+	int exitRoom = CreateRoom("Garage", "You can now escape and reach your friends at the party!", "Nothing usefull here");
 
 
 
@@ -77,11 +77,11 @@ void Program::SetupRooms()
 
 }
 
-int Program::CreateRoom(string name, string description) 
+int Program::CreateRoom(string name, string description, string item) 
 {
 	int index = m_rooms.size();
 	Room* room = new Room;
-	room->Setup(name, description);
+	room->Setup(name, description, item);
 	m_rooms.push_back(room);
 
 	return (index);
@@ -94,8 +94,26 @@ string Program::HandleUserInput()
 	cout << "Now what?" << endl;
 	cout << ">" << endl;
 	getline(cin, userInput);
-
-	if (userInput == "N")
+	if (userInput == "LOOK") 
+	{
+		m_ptrCurrentRoom->OutputRoomData();
+		
+	}
+	else if (m_ptrCurrentRoom->Item != "Nothing usefull here" && userInput == "PICK")
+	{
+		string _item = m_ptrCurrentRoom->Item;
+		Bag.push_back(_item);
+		cout << "You picked " + m_ptrCurrentRoom->Item << endl;
+		cout << "You put " + m_ptrCurrentRoom->Item + " in your bag." << endl;
+	}
+	else if (userInput == "BAG") 
+	{
+		for (int i = 0; i < Bag.size(); i++) 
+		{
+			cout << Bag[i] << "\n";
+		}
+	}
+	else if (userInput == "N")
 	{
 		if (m_ptrCurrentRoom->CanGo(NORTH))
 		{

@@ -10,16 +10,18 @@ enum Direction {NORTH = 0, SOUTH = 1, EAST = 2, WEST = 3};
 struct Room
 {
 	Room();
-	Room(string name, string desc);
+	Room(string name, string desc, string item);
 	void SetNeighbors(Room* ptrNorth, Room* ptrSouth, Room* ptrWest, Room* ptrEast);
-	void Setup(string name = "", string description = "");
+	void Setup(string name = "", string description = "", string item ="");
 
-	void OutputRoomInfo();
+	void OutputRoomName();
 	void OutputNeighbors();
+	void OutputRoomData();
 	bool CanGo(Direction direction);
 
 	string Name;
 	string Description;
+	string Item;
 	Room* ptrNeighborNorth;
 	Room* ptrNeighborSouth;
 	Room* ptrNeighborWest;
@@ -30,14 +32,15 @@ Room::Room()
 {
 	Setup();
 };
-Room::Room(string name, string desc) 
+Room::Room(string name, string desc, string item) 
 {
-	Setup(name, desc);
+	Setup(name, desc, item);
 };
-void Room::Setup(string name, string description) 
+void Room::Setup(string name, string description, string item) 
 {
 	this->Name = name;
 	this->Description = description;
+	this->Item = item;
 	ptrNeighborNorth = nullptr;
 	ptrNeighborSouth = nullptr;
 	ptrNeighborEast = nullptr;
@@ -63,9 +66,16 @@ void Room::OutputNeighbors()
 	cout << endl;
 };
 
-void Room::OutputRoomInfo()
+void Room::OutputRoomName()
 {
-	cout << Name << endl << Description << endl;
+	cout << Name << endl;
+	cout << endl;
+}
+
+void Room::OutputRoomData() 
+{
+	cout << Description << endl;
+	cout << Item << endl;
 	OutputNeighbors();
 	cout << endl;
 }
