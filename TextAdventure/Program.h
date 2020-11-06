@@ -38,12 +38,11 @@ void Program::Run()
 	while (!n_done)
 	{
 		m_ptrCurrentRoom->OutputRoomInfo();
-
 		currentStatus = HandleUserInput();
 		
 
 		cout << "\t" << currentStatus << endl;
-		cout << endl << "Press Enter to Continue..." << endl;
+		
 	} 
 
 }
@@ -51,15 +50,15 @@ void Program::Run()
 void Program::SetupRooms() 
 {
 	//create room with name and description
-	int startingRoom = CreateRoom("Room0", "asdasd");
-	int room1 = CreateRoom("Room1", "asdasd");
-	int room2 = CreateRoom("Room2", "asdasd");
-	int room3 = CreateRoom("Room3", "asdasd");
-	int gunRoom = CreateRoom("Room4", "asdasd");
-	int monsterRoom = CreateRoom("Room5", "asdasd");
-	int keyRoom = CreateRoom("Room6", "asdasd");
-	int room7 = CreateRoom("Room7", "asdasd");
-	int exitRoom = CreateRoom("Room8", "asdasd");
+	int startingRoom = CreateRoom("Bedroom", "This is your bedroom");
+	int room1 = CreateRoom("Hallway", "1st floor - Hallway");
+	int room2 = CreateRoom("Jenny's bedroom", "This is your sister's bedroom, you shouldn't be here...");
+	int room3 = CreateRoom("Entrance hall", "This is the entrance hall, the door is locked.");
+	int gunRoom = CreateRoom("Kitchen", "You are in the kitchen, there is a bottle of wine.");
+	int monsterRoom = CreateRoom("Livingroom", "Your parents are watching TV on the couch, be careful!");
+	int keyRoom = CreateRoom("Shelf", "The car's keys must be here somewhere...");
+	int room7 = CreateRoom("Garage's stairs", "You are walking down the stairs...");
+	int exitRoom = CreateRoom("Garage", "You can now escape and reach your friends at the party!");
 
 
 
