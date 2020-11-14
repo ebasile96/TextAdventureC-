@@ -16,12 +16,14 @@ class Program
 
 	private:
 		void SetupRooms();
+		void Use(string _item);
 		string HandleUserInput();
 		int CreateRoom(string name, string description, string item);
 		Room* m_ptrCurrentRoom;
 		vector<Room*> m_rooms;
 		bool n_done;
 		vector<string> Bag{"Knife"};
+		bool itemFound;
 };
 
 Program::Program() 
@@ -44,6 +46,11 @@ void Program::Run()
 		cout << "\t" << currentStatus << endl;
 		
 	} 
+
+	if (n_done) {
+		cout << "GAME OVER" << endl;
+	}
+
 
 }
 
@@ -87,6 +94,26 @@ int Program::CreateRoom(string name, string description, string item)
 	return (index);
 };
 
+void Program::Use(string _item) 
+{
+	//cerca l'item, se lo trovi usalo
+	for (int i = 0; i < Bag.size(); i++)
+	{
+		if (Bag[i] == _item) 
+		{
+			itemFound = true;
+			cout << "You used " + _item << endl;
+		}
+	}
+	if (!itemFound) 
+	{
+		cout << _item + " not found." << endl;
+	}
+	
+	
+
+}
+
 string Program::HandleUserInput() 
 {
 	string currentStatus = "";
@@ -110,7 +137,8 @@ string Program::HandleUserInput()
 	{
 		for (int i = 0; i < Bag.size(); i++) 
 		{
-			cout << Bag[i] << "\n";
+			//currentStatus = Bag[i]; 
+			cout << Bag[i] << endl;
 		}
 	}
 	else if (userInput == "N")
@@ -161,7 +189,45 @@ string Program::HandleUserInput()
 			currentStatus = "You can't go West!";
 		}
 	}
-
+	else if (userInput == "USE KNIFE") 
+	{
+		Use("Knife");
+		if (m_ptrCurrentRoom->Name == "Livingroom" && itemFound == true) 
+		{
+			currentStatus = "You killed your family";
+			n_done = true;
+		}
+		else 
+		{
+			currentStatus = "It can't be used here...";
+		}
+	}
+	else if (userInput == "USE KEY") 
+	{
+		Use("key");
+		if (m_ptrCurrentRoom->Name == "Garage" && itemFound == true) 
+		{
+			currentStatus = "Congratulations! You successfully escaped, now you can reach the party!";
+			n_done = true;
+		}
+		else 
+		{
+			currentStatus = "It can't be used here...";
+		}
+	}
+	else if (userInput == "USE BOTTLE OF WINE") 
+	{
+		Use("Bottle of wine");
+		if (itemFound) 
+		{
+			currentStatus == "You got drunk!... Your parents spotted you and confined you to your room.";
+			n_done = true;
+		}
+		else
+		{
+			currentStatus = "Search for some wine to bring to the party!";
+		}
+	}
 	else {
 		currentStatus = "Unknown command...";
 	}
