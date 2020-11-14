@@ -69,12 +69,13 @@ void Room::OutputNeighbors()
 void Room::OutputRoomName()
 {
 	cout << Name << endl;
+	cout << Description << endl;
 	cout << endl;
 }
 
 void Room::OutputRoomData() 
 {
-	cout << Description << endl;
+
 	cout << Item << endl;
 	OutputNeighbors();
 	cout << endl;

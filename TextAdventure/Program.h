@@ -24,6 +24,8 @@ class Program
 		bool n_done;
 		vector<string> Bag{"Knife"};
 		bool itemFound;
+		string story = "Hi, you find yourself in your bedroom, try to escape from home to reach your friends at the party!";
+	
 };
 
 Program::Program() 
@@ -35,6 +37,16 @@ Program::Program()
 
 void Program::Run() 
 {
+	cout << story << endl;
+	cout << "command list : " << endl;
+	cout << "(N)North - to go north" << endl;
+	cout << "(S)South - to go south" << endl;
+	cout << "(E)East - to go east" << endl;
+	cout << "(W)West - to go west" << endl;
+	cout << "BAG - to inspect your inventory" << endl;
+	cout << "LOOK - to inspect the room you find yourself in" << endl;
+	cout << "PICK - to collect any useful object in the room" << endl;
+	cout << "USE + (ITEM NAME) - to use your items" << endl;
 
 	string currentStatus = "";
 	while (!n_done)
