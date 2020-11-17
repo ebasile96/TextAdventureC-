@@ -18,6 +18,12 @@
     <ClCompile Include="TextAdventure.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="Program.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h">

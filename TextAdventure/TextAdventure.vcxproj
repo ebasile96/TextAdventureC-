@@ -139,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Program.cpp" />
+    <ClCompile Include="Room.cpp" />
     <ClCompile Include="TextAdventure.cpp" />
   </ItemGroup>
   <ItemGroup>
