@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//setup stanze e inizializzazione del programma
 Program::Program()
 {
 	m_ptrCurrentRoom = nullptr;
@@ -9,13 +10,16 @@ Program::Program()
 	SetupRooms();
 }
 
+//funzione di Run del programma entro il quale vengono gestiti input e azioni
 void Program::Run()
 {
+	//print di comandi e introduzione alla storia
 	cout << story << endl;
 	cout << "" << endl;
 	ShowCommands();
 	cout << "" << endl;
 	string currentStatus = "";
+	//mentre il programma è in funzione
 	while (!n_done)
 	{
 		m_ptrCurrentRoom->OutputRoomName();
@@ -24,6 +28,7 @@ void Program::Run()
 
 		cout << "\t" << currentStatus << endl;
 
+		//lose condition
 		if (m_ptrCurrentRoom->Name == "Livingroom" && parentsDistracted == false) 
 		{
 			cout << "Your parents caught you!" << endl;
@@ -31,7 +36,7 @@ void Program::Run()
  		}
 
 	}
-
+	//termine programma
 	if (n_done) {
 		cout << "THE END" << endl;
 	}
@@ -39,6 +44,7 @@ void Program::Run()
 
 }
 
+//funzione che printa la lista dei comandi disponibili
 void Program::ShowCommands() 
 {
 
@@ -55,6 +61,7 @@ void Program::ShowCommands()
 	cout << "COMMANDS - to show command keys" << endl;
 }
 
+//setup di tutte le room: nome, descrizione, item, interactions e localizzazione delle stanze
 void Program::SetupRooms()
 {
 	//create room with name and description
@@ -85,6 +92,7 @@ void Program::SetupRooms()
 
 }
 
+//funzione che va a generare tutte le stanze e ad inserirle in un vector
 int Program::CreateRoom(string name, string description, string item)
 {
 	int index = m_rooms.size();
@@ -95,6 +103,7 @@ int Program::CreateRoom(string name, string description, string item)
 	return (index);
 };
 
+//funzione di utilizzo per gli items
 void Program::Use(string _item)
 {
 	//cerca l'item, se lo trovi usalo
@@ -113,6 +122,7 @@ void Program::Use(string _item)
 
 }
 
+//funzione di check per la win condition
 void Program::CheckWin() 
 {
 	for (int i = 0; i < Bag.size(); i++)
@@ -125,6 +135,7 @@ void Program::CheckWin()
 	}
 }
 
+//funzione che gestisce gli input e aggiorna il current status del giocatore
 string Program::HandleUserInput()
 {
 	string currentStatus = "";

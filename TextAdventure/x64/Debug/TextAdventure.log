@@ -1,5 +1,8 @@
 ﻿  Program.cpp
 C:\Users\746970\Desktop\TextAdventureC-\TextAdventure\Program.cpp(1,10): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
-C:\Users\746970\Desktop\TextAdventureC-\TextAdventure\Program.cpp(90,28): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
-C:\Users\746970\Desktop\TextAdventureC-\TextAdventure\Program.cpp(245,18): warning C4834: il valore restituito della funzione con attributo 'nodiscard' verrà rimosso
+C:\Users\746970\Desktop\TextAdventureC-\TextAdventure\Program.cpp(98,28): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\Users\746970\Desktop\TextAdventureC-\TextAdventure\Program.cpp(256,18): warning C4834: il valore restituito della funzione con attributo 'nodiscard' verrà rimosso
+  Room.cpp
+  TextAdventure.cpp
+  Generazione del codice in corso...
   TextAdventure.vcxproj -> C:\Users\746970\Desktop\TextAdventureC-\x64\Debug\TextAdventure.exe

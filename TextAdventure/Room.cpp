@@ -6,10 +6,13 @@ Room::Room()
 {
 	Setup();
 };
+
 Room::Room(string name, string desc, string item)
 {
 	Setup(name, desc, item);
 };
+
+//funzione che determina i valori di setup di una stanza
 void Room::Setup(string name, string description, string item)
 {
 	this->Name = name;
@@ -20,6 +23,8 @@ void Room::Setup(string name, string description, string item)
 	ptrNeighborEast = nullptr;
 	ptrNeighborWest = nullptr;
 };
+
+//setup dei pointers per il riconoscimento delle stanze e la loro locazione
 void Room::SetNeighbors(Room* ptrNorth, Room* ptrSouth, Room* ptrWest, Room* ptrEast)
 {
 	ptrNeighborNorth = ptrNorth;
@@ -28,6 +33,7 @@ void Room::SetNeighbors(Room* ptrNorth, Room* ptrSouth, Room* ptrWest, Room* ptr
 	ptrNeighborWest = ptrWest;
 };
 
+//funzione che printa le stanze nelle quali puoi muoverti dalla tua current 
 void Room::OutputNeighbors()
 {
 	cout << "You can go: ";
@@ -40,6 +46,8 @@ void Room::OutputNeighbors()
 	cout << endl;
 };
 
+
+//funzione che printa nome e descrizione della stanza
 void Room::OutputRoomName()
 {
 	cout << Name << endl;
@@ -47,6 +55,7 @@ void Room::OutputRoomName()
 	cout << endl;
 }
 
+//funzione che printa stanze vicine e eventuale item presente 
 void Room::OutputRoomData()
 {
 
@@ -55,6 +64,9 @@ void Room::OutputRoomData()
 	cout << endl;
 }
 
+/*
+funzione che restituisce true se una stanza è adiacente a quella current
+*/
 bool Room::CanGo(Direction direction)
 {
 	if (direction == NORTH && ptrNeighborNorth != nullptr)
